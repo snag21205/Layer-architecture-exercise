@@ -7,7 +7,7 @@ namespace BLL
 {
     public class BorrowService
     {
-        /*test ci pipeline*/
+        /*test branch protection with ci/cd pipeline*/
         private readonly IBorrowRecordRepository repository;
 
         public BorrowService() : this(new BorrowRecordDAL())
