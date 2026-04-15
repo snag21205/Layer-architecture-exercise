@@ -7,6 +7,7 @@ namespace BLL
 {
     public class BorrowService
     {
+        /*test ci pipeline*/
         private readonly IBorrowRecordRepository repository;
 
         public BorrowService() : this(new BorrowRecordDAL())
