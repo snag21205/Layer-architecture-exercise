@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
+using DTO;
 
 namespace DAL
 {
@@ -24,9 +25,9 @@ namespace DAL
             }
         }
 
-        public DataTable GetAll()
+        public List<BorrowRecordView> GetAll()
         {
-            DataTable dt = new DataTable();
+            var items = new List<BorrowRecordView>();
 
             using (var conn = DatabaseHelper.GetConnection())
             {
@@ -37,15 +38,25 @@ namespace DAL
                     SELECT m.Name, b.Title, br.BorrowDate, br.ReturnDate
                     FROM BorrowRecords br
                     JOIN Members m ON br.MemberID = m.MemberID
-                    JOIN Books b ON br.BookID = b.BookID";
+                    JOIN Books b ON br.BookID = b.BookID
+                    ORDER BY br.BorrowDate DESC";
 
                 using (var reader = cmd.ExecuteReader())
                 {
-                    dt.Load(reader);
+                    while (reader.Read())
+                    {
+                        items.Add(new BorrowRecordView
+                        {
+                            MemberName = reader.GetString(0),
+                            BookTitle = reader.GetString(1),
+                            BorrowDate = reader.GetDateTime(2),
+                            ReturnDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3)
+                        });
+                    }
                 }
             }
 
-            return dt;
+            return items;
         }
     }
 }
