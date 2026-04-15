@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
+using DTO;
 
 namespace BLL
 {
     public class BorrowService
     {
-        private BorrowRecordDAL dal = new BorrowRecordDAL();
+        private readonly BorrowRecordDAL dal = new BorrowRecordDAL();
 
         public void BorrowBook(int memberId, int bookId)
         {
-           
+            if (memberId <= 0)
+            {
+                throw new ArgumentException("Member ID must be greater than 0.", nameof(memberId));
+            }
+
+            if (bookId <= 0)
+            {
+                throw new ArgumentException("Book ID must be greater than 0.", nameof(bookId));
+            }
+
             dal.BorrowBook(memberId, bookId);
         }
 
-        public System.Data.DataTable GetAll()
+        public List<BorrowRecordView> GetAll()
         {
             return dal.GetAll();
         }

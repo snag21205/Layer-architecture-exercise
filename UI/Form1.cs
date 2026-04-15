@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 
@@ -13,7 +6,8 @@ namespace UI
 {
     public partial class Form1 : Form
     {
-        BorrowService service = new BorrowService();
+        private readonly BorrowService service = new BorrowService();
+
         public Form1()
         {
             InitializeComponent();
@@ -21,12 +15,28 @@ namespace UI
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            int memberId = int.Parse(txtMemberID.Text);
-            int bookId = int.Parse(txtBookID.Text);
+            if (!int.TryParse(txtMemberID.Text, out int memberId))
+            {
+                MessageBox.Show("Member ID must be a number.");
+                return;
+            }
 
-            service.BorrowBook(memberId, bookId);
+            if (!int.TryParse(txtBookID.Text, out int bookId))
+            {
+                MessageBox.Show("Book ID must be a number.");
+                return;
+            }
 
-            MessageBox.Show("Borrow success!");
+            try
+            {
+                service.BorrowBook(memberId, bookId);
+                MessageBox.Show("Borrow success!");
+                dataGridView1.DataSource = service.GetAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Borrow failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
