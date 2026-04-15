@@ -1,22 +1,22 @@
-# Visual Studio
-.vs/
-bin/
-obj/
+# # Visual Studio
+# .vs/
+# bin/
+# obj/
 
-# User-specific files
-*.user
-*.suo
+# # User-specific files
+# *.user
+# *.suo
 
-# Build results
-*.dll
-*.exe
+# # Build results
+# *.dll
+# *.exe
 
-# SQLite database runtime
-bin/**/*.db
+# # SQLite database runtime
+# bin/**/*.db
 
-# Logs
-*.log
+# # Logs
+# *.log
 
-# OS files
-.DS_Store
-Thumbs.db
+# # OS files
+# .DS_Store
+# Thumbs.db
