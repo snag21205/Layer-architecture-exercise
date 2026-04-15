@@ -5,7 +5,13 @@ using DTO;
 
 namespace DAL
 {
-    public class BorrowRecordDAL
+    public interface IBorrowRecordRepository
+    {
+        void BorrowBook(int memberId, int bookId);
+        List<BorrowRecordView> GetAll();
+    }
+
+    public class BorrowRecordDAL : IBorrowRecordRepository
     {
         public void BorrowBook(int memberId, int bookId)
         {

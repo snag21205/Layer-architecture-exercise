@@ -7,7 +7,16 @@ namespace BLL
 {
     public class BorrowService
     {
-        private readonly BorrowRecordDAL dal = new BorrowRecordDAL();
+        private readonly IBorrowRecordRepository repository;
+
+        public BorrowService() : this(new BorrowRecordDAL())
+        {
+        }
+
+        public BorrowService(IBorrowRecordRepository repository)
+        {
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        }
 
         public void BorrowBook(int memberId, int bookId)
         {
@@ -21,12 +30,12 @@ namespace BLL
                 throw new ArgumentException("Book ID must be greater than 0.", nameof(bookId));
             }
 
-            dal.BorrowBook(memberId, bookId);
+            repository.BorrowBook(memberId, bookId);
         }
 
         public List<BorrowRecordView> GetAll()
         {
-            return dal.GetAll();
+            return repository.GetAll();
         }
     }
 }
