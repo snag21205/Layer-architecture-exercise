@@ -15,6 +15,9 @@
 # Logs
 *.log
 
+# Test output
+**/TestResults/
+
 # OS files
 .DS_Store
 Thumbs.db
