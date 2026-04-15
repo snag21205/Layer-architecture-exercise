@@ -1,0 +1,6 @@
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\bin\x64\Debug\DTO.dll
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\bin\x64\Debug\DTO.pdb
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\obj\x64\Debug\DTO.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\obj\x64\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\obj\x64\Debug\DTO.dll
+C:\Users\Admin\source\repos\Layer-architecture-exercise\DTO\obj\x64\Debug\DTO.pdb
